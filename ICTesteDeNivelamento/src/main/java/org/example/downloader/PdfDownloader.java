@@ -7,6 +7,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,7 +40,7 @@ public class PdfDownloader {
 
             // Faz o download do PDF
             try (InputStream in = new URI(pdfUrl).toURL().openStream()) {
-                Files.copy(in, Paths.get(caminhoCompleto));
+            	Files.copy(in, Paths.get(caminhoCompleto), StandardCopyOption.REPLACE_EXISTING);
                 System.out.println("✔ Download concluído: " + caminhoCompleto);
                 arquivosBaixados.add(caminhoCompleto);
             } catch (URISyntaxException e) {
