@@ -25,16 +25,16 @@
     
     <!-- Tabula (Para extrair tabelas de PDFs) -->
     <dependency>
-    <groupId>technology.tabula</groupId>
-    <artifactId>tabula</artifactId>
-    <version>1.0.4</version>
+      <groupId>technology.tabula</groupId>
+      <artifactId>tabula</artifactId>
+      <version>1.0.4</version>
 	</dependency>
 	
 	<!-- Apache PDFBox (Dependência do Tabula para manipulação de PDFs) -->
 	<dependency>
-  	<groupId>org.apache.pdfbox</groupId>
-  	<artifactId>pdfbox</artifactId>
-  	<version>2.0.30</version>
+  	  <groupId>org.apache.pdfbox</groupId>
+  	  <artifactId>pdfbox</artifactId>
+  	  <version>2.0.30</version>
 	</dependency>
 
 
@@ -44,6 +44,16 @@
       <artifactId>opencsv</artifactId>
       <version>5.7.1</version>
     </dependency>
+    
+    <!-- JUnit (para testes unitários) -->
+	<dependency>
+ 	  <groupId>org.junit.jupiter</groupId>
+  	  <artifactId>junit-jupiter</artifactId>
+  	  <version>5.10.0</version>
+ 	  <scope>test</scope>
+	</dependency>
+
+    
   </dependencies>
 
 </project>
