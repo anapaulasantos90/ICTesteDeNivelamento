@@ -9,6 +9,14 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
 public class ZipUtils {
+	
+	/**
+     * Compacta uma lista de arquivos para um único arquivo ZIP.
+     *
+     * @param arquivos Lista de caminhos dos arquivos a serem compactados
+     * @param caminhoZip Caminho onde o ZIP será salvo
+     * @throws IOException se ocorrer erro durante a compactação
+     */
 	public static void compactarArquivos(List<String> arquivos, String caminhoZip) throws IOException {
 		try (FileOutputStream fos = new FileOutputStream(caminhoZip);
 				ZipOutputStream zipOut = new ZipOutputStream(fos)) {

@@ -20,11 +20,18 @@ public class PdfDownloader {
 
 	private static final String URL_ANS = "https://www.gov.br/ans/pt-br/acesso-a-informacao/participacao-da-sociedade/atualizacao-do-rol-de-procedimentos";
 
+	/**
+	 * Baixa todos os PDFs de Anexos disponíveis na página da ANS.
+	 *
+	 * @param pastaDestino Caminho da pasta onde os arquivos serão salvos
+	 * @return Lista de caminhos completos dos arquivos baixados
+	 * @throws IOException se ocorrer falha de conexão ou de leitura
+	 */
 	public static List<String> downloadAllPdfs(String pastaDestino) throws IOException {
 		// Acessa a página da ANS
 		Document doc = Jsoup.connect(URL_ANS).get();
 
-		// Procura links para Anexos I e II que terminem com ".pdf"
+		// Seleciona links que contenham "Anexo" e terminem em .pdf
 		Elements linksPdf = doc.select("a[href$=.pdf]:contains(Anexo)");
 
 		if (linksPdf.isEmpty()) {

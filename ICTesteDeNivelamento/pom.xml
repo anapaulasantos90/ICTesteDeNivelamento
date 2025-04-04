@@ -30,6 +30,7 @@
     <version>1.0.4</version>
 	</dependency>
 	
+	<!-- Apache PDFBox (Dependência do Tabula para manipulação de PDFs) -->
 	<dependency>
   	<groupId>org.apache.pdfbox</groupId>
   	<artifactId>pdfbox</artifactId>

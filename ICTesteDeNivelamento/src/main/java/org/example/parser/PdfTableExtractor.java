@@ -18,6 +18,15 @@ import java.util.logging.Logger;
 public class PdfTableExtractor {
 	private static final Logger logger = Logger.getLogger(PdfTableExtractor.class.getName());
 
+	/**
+	 * Extrai as tabelas de um PDF e retorna os dados em formato de lista de arrays
+	 * de strings.
+	 *
+	 * @param caminhoPdf Caminho do arquivo PDF
+	 * @return Lista de linhas extraídas da tabela
+	 * @throws IOException se o arquivo não for encontrado ou ocorrer erro ao ler o
+	 *                     PDF
+	 */
 	public static List<String[]> extrairTabela(String caminhoPdf) throws IOException {
 		List<String[]> resultado = new ArrayList<>();
 
@@ -27,15 +36,17 @@ public class PdfTableExtractor {
 		}
 
 		try (PDDocument document = PDDocument.load(file)) {
-		    ObjectExtractor extractor = new ObjectExtractor(document);
-		    PageIterator pages = extractor.extract();
-			
+			ObjectExtractor extractor = new ObjectExtractor(document);
+			PageIterator pages = extractor.extract();
+
 			while (pages.hasNext()) {
 				Page page = pages.next();
 
+				// Primeiro tenta como planilha (mais estruturado)
 				SpreadsheetExtractionAlgorithm sea = new SpreadsheetExtractionAlgorithm();
 				List<Table> tables = sea.extract(page);
 
+				// Caso não encontre tabela com SEA, usa algoritmo básico como fallback
 				if (tables.isEmpty()) {
 					// fallback para tentar extrair com outra abordagem
 					BasicExtractionAlgorithm bea = new BasicExtractionAlgorithm();
@@ -45,7 +56,12 @@ public class PdfTableExtractor {
 				for (Table table : tables) {
 					table.getRows().forEach(row -> {
 						List<String> linha = new ArrayList<>();
-						row.forEach(cell -> linha.add(cell.getText()));
+						row.forEach(cell -> {
+							 // Substitui siglas por nomes completos
+							String texto = cell.getText().replaceAll("\\bOD\\b", "Odontologia").replaceAll("\\bAMB\\b",
+									"Ambulatorial");
+							linha.add(texto);
+						});
 						resultado.add(linha.toArray(new String[0]));
 					});
 				}

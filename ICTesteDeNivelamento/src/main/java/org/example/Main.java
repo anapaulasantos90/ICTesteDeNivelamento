@@ -18,26 +18,30 @@ public class Main {
 		String pastaDestino = System.getProperty("user.home") + "/Downloads/ICTesteDeNivelamento/";
 
 		try {
+			// Cria a pasta de destino, se ainda não existir
 			Files.createDirectories(Paths.get(pastaDestino));
 			logger.info("📂 Pasta criada/verificada: " + pastaDestino);
 
-			// Define a variável caminhoZip antes de usá-la
-			String caminhoZip = pastaDestino + "AnexosCompactados.zip";
+			// Caminho do arquivo zip final
+			String caminhoZip = pastaDestino + "Teste_AnaPaula.zip";
 
-			// Faz o download dos Anexos I e II
+			// Baixa os PDFs necessários
 			List<String> arquivosBaixados = PdfDownloader.downloadAllPdfs(pastaDestino);
 			logger.info("📥 PDFs baixados com sucesso: " + arquivosBaixados);
 
-			// Extrai os dados do Anexo I (assumindo que é o primeiro PDF baixado)
-			String caminhoAnexoI = arquivosBaixados.get(0);
+			// Extrai dados do Anexo I
+			String caminhoAnexoI = arquivosBaixados.get(0); // primeiro PDF
 			List<String[]> dadosExtraidos = PdfTableExtractor.extrairTabela(caminhoAnexoI);
 
-			// Exporta os dados para CSV
+			// Salva os dados em CSV
 			String caminhoCsv = pastaDestino + "RolProcedimentos.csv";
 			CsvExporter.salvarComoCsv(dadosExtraidos, caminhoCsv);
 			logger.info("📝 Dados exportados para CSV: " + caminhoCsv);
 
-			// Compacta os arquivos em um ZIP
+			// Adiciona o CSV à lista de arquivos a serem compactados
+			arquivosBaixados.add(caminhoCsv);
+
+			// Compacta todos os arquivos em um ZIP
 			ZipUtils.compactarArquivos(arquivosBaixados, caminhoZip);
 			logger.info("📦 Arquivos compactados com sucesso: " + caminhoZip);
 
