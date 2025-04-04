@@ -12,44 +12,34 @@ Este projeto foi desenvolvido como parte de um **teste técnico** para um proces
 - **OpenCSV**
 - **Jsoup**
 - **Maven**
+- **JUnit 5**
 
 ---
 
 ## 📂 Estrutura do Projeto
 
-src
-└── main
-    └── java
-        └── org
-            └── example
-                ├── Main.java
-                ├── downloader
-                │   └── PdfDownloader.java
-                ├── exporter
-                │   └── CsvExporter.java
-                ├── parser
-                │   └── PdfTableExtractor.java
-                └── utils
-                    └── ZipUtils.java
+src/ ├── main/ │ └── java/ │ └── org.example/ │ ├── Main.java │ ├── downloader/ │ │ └── PdfDownloader.java │ ├── exporter/ │ │ └── CsvExporter.java │ ├── parser/ │ │ └── PdfTableExtractor.java │ └── utils/ │ └── ZipUtils.java └── test/ └── java/ └── org.example/ ├── exporter/CsvExporterTest.java ├── parser/PdfTableExtractorTest.java └── utils/ZipUtilsTest.java
 
 ---
 
-## 🚀 Execução do Projeto
+## 🚀 Como Executar o Projeto
 
-### Pré-requisitos
+### ✅ Pré-requisitos
 
 - Java 21 instalado
 - Maven instalado
 
 ---
 
-### Passos para rodar:
+### ▶ Passos para executar
 
 1. Clone o repositório ou baixe o projeto.
-2. No terminal, navegue até a raiz do projeto.
-3. Execute o comando:
+git clone https://github.com/anapaulasantos90/ICTesteDeNivelamento.git
+2. Navegue até a raiz do projeto
+cd ICTesteDeNivelamento
+3. Compile e execute a aplicação
 mvn clean compile exec:java -Dexec.mainClass="org.example.Main"
-4. Os seguintes arquivos serão gerados no diretório:
+4. Ao final da execução, os seguintes arquivos serão gerados na pasta:
 ~/Downloads/ICTesteDeNivelamento/
 ├── Anexo_I.pdf
 ├── Anexo_II.pdf
@@ -58,15 +48,29 @@ mvn clean compile exec:java -Dexec.mainClass="org.example.Main"
 
 ---
 
+🧪 Executando os Testes
+
+Este projeto utiliza JUnit 5 para testes unitários.
+
+Executar testes com Maven
+
+Para rodar todos os testes:
+
+mvn test
+
+As classes de teste estão localizadas em src/test/java e validam o funcionamento da extração de dados, exportação CSV e compactação de arquivos.
+
+---
+
 ## 📌 Funcionalidades
 
-🔽 Download automático dos PDFs do Anexo I e II.
+🔽 Download automático dos PDFs do Anexo I e II
 
-🧾 Extração de tabela do Anexo I usando o Tabula.
+🧾 Extração de tabela do Anexo I usando o Tabula
 
-📊 Exportação para CSV com os dados extraídos e Substituição de duas abreviações pelas descrições completas.
+📊 Exportação para CSV com os dados extraídos e Substituição de duas abreviações pelas descrições completas
 
-🗜 Compactação dos arquivos em um .zip nomeado como Teste_AnaPaula.zip.
+🗜 Compactação dos arquivos em um .zip nomeado como Teste_AnaPaula.zip
 
 ---
 
