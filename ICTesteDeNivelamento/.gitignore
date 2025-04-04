@@ -1,0 +1,12 @@
+# Arquivos de configuração do Eclipse
+.metadata/
+*.classpath
+*.project
+*.settings/
+
+# Arquivos de compilação
+bin/
+target/
+
+# Outros arquivos desnecessários
+*.log
